@@ -9,9 +9,14 @@ body{
 }
 .form-btn {
   background: linear-gradient(135deg, #6C2BD9, #2563EB, #1d4d4d); 
+  border:2px solid  #6C2BD9;
+  color: white;
   cursor: pointer;
 }
 
 .form-btn:hover {
-  transform: scale(1.05);
+  background: transparent;
+  border:2px solid #1d4d4d;
+  color:#1d4d4d;
+  transition: all 0.4s;
 }
