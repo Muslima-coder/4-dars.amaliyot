@@ -5,7 +5,7 @@
 }
 body{
  background: linear-gradient(135deg, #0d0d0d, #1a1a2e, #1d2b27); 
-  background-attachment:scroll;
+  background-attachment:fixed;
 }
 .form-btn {
   background: linear-gradient(135deg, #6C2BD9, #2563EB, #1d4d4d); 
