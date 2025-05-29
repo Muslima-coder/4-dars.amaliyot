@@ -1,57 +1,73 @@
 let elForm = document.querySelector(".site-form ")
-let elInput = document.querySelector(".form-input ")
-let elBtn = document.querySelector(".form-btn ")
-let elList = document.querySelector(".site-list ")
+// let elInput = document.querySelector(".form-input ")
+// let elBtn = document.querySelector(".form-btn ")
+// let elList = document.querySelector(".site-list ")
 
 let todos =[]
 
- elForm.addEventListener("submit", function(evt){
+//create todo
+elForm.addEventListener("submit", function (evt) {
     evt.preventDefault()
-    let newTodo = {
-        id:todos.length + 1,
-        value:elInput.value,
-        isComplited: false
+    let todo = {
+        id: todos[todos.length -1]?.id ? todos[todos.length -1].id +1 : 1,
+        title: evt.target.todo.value,
+        isComplated: false
     }
-    todos.push(newTodo)
+    todos.push(todo)
     evt.target.reset()
-    renderTodas(todos, elList)
-    
- })
+    renderTodos(todos, elForm.nextElementSibling)
 
- function renderTodas(arr, list){
-    list.innerHTML = ``
-    arr.forEach(item => {
-        let elItem = document.createElement("li")
+})
+
+//Render Todos
+  function renderTodos(arr, list){
+   list.innerHTML = ``
+   arr.forEach((item,index) =>{
+    let elItem = document.createElement("li")
+        elItem.className = `${item.isComplated ? "line-through opacity-[70%] cursor-not-allowed" : "" } duration-300 p-5  flex items-center justify-between`
         elItem.innerHTML = `
-        <div class="text-center w-[150px]">
-        <strong class="font-semibold text-white">${item.value}</strong>
-
-        <div class="flex mt-[8px] gap-[10px]">
-        <button onclick="handleEditBtn(${item.id})" class="w-[85px] py-1 px-2 rounded-md font-medium  bg-[#6C2BD9] text-white border-[2px] 
-        border-[#6C2BD9]  hover:bg-transparent hover:text-[#A78BFA] hover:border-[#A78BFA] duration-400">Tahrirlash</button>
-
-        <button onclick="handleDeleteBtn(${item.id})" class="w-[85px] py-1 px-2 rounded-md font-medium  bg-[#8B0000] text-white border-[2px] 
-        border-[#8B0000]  hover:bg-transparent hover:text-[#F87171] hover:border-[#F87171] duration-400">O'chirish</button>
+        <div class=" flex flex-col gap-3">
+         <div class="text-center">
+        <strong class="font-semibold text-white " >${item.title}</strong>
+        </div>
+        <div class="flex items-center gap-2">
+        <label>
+        <input id="complate" class="hidden" type="checkbox" >
+        <div onclick="handleChekcClick(${item.id})"  id="complate"  class="w-[20px] relative flex items-center justify-center h-[20px] rounded-full border-[1px]  border-slate-500">
+        <div id="complate" class="${item.isComplated ? "bg-red-500" : ""} absolute inset=[1.2px] rounded-full "></div>
+        </div>
+        </label>
+        <strong class="font-semibold text-white">${index +1}.</strong>
+        <button id="edit"  class="bg-green-600 text-white p-2 rounded-md w-[100px]" >Edit</button>
+        <button id="delete" class="bg-red-600 text-white p-2 rounded-md w-[100px]"  >Delete</button>
         </div>
         </div>
+         `
+         list.appendChild(elItem)
 
-        `
-        list.appendChild(elItem)
+         elItem.addEventListener("click", function (e) {
+            if(e.target.id == "delete"){
+                todos.splice(index, 1)
+                renderTodos(todos, elForm.nextElementSibling)
+            }
+
+            else if(e.target.id == "edit"){
+                if(!item.isComplated){
+                    let newValue = prompt(item.title)
+                    todos[index].title = newValue
+                    renderTodos(todos, elForm.nextElementSibling)
+                }
+            }
+
+         })   
 
     })
- }
+  }
 
 
- //Edit va delete 
- function handleEditBtn(id) {
-  let btn = todos.find(item => item.id === id)
-  let newValue = prompt("Matnni tahrirlang:", btn.value)
-  
-   btn.value = newValue
-    renderTodas(todos, elList)
-}
-
-function handleDeleteBtn(id) {
-  todos = todos.filter(item => item.id != id);
-  renderTodas(todos, elList); 
-}
+  //Check part 
+  function handleChekcClick(id){
+    let findObj = todos.find(item => item.id == id)
+    findObj.isComplated = !findObj.isComplated
+    renderTodos(todos, elForm.nextElementSibling)
+  }
