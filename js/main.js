@@ -1,9 +1,9 @@
 let elForm = document.querySelector(".site-form ")
-// let elInput = document.querySelector(".form-input ")
-// let elBtn = document.querySelector(".form-btn ")
-// let elList = document.querySelector(".site-list ")
 
-let todos =[]
+
+// let todos =[]
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+renderTodos(todos, elForm.nextElementSibling);
 
 //create todo
 elForm.addEventListener("submit", function (evt) {
@@ -15,31 +15,32 @@ elForm.addEventListener("submit", function (evt) {
     }
     todos.push(todo)
     evt.target.reset()
+
     renderTodos(todos, elForm.nextElementSibling)
 
 })
 
 //Render Todos
   function renderTodos(arr, list){
-   list.innerHTML = ``
+   list.innerHTML = null
    arr.forEach((item,index) =>{
     let elItem = document.createElement("li")
         elItem.className = `${item.isComplated ? "line-through opacity-[70%] cursor-not-allowed" : "" } duration-300 p-5  flex items-center justify-between`
         elItem.innerHTML = `
         <div class=" flex flex-col gap-3">
          <div class="text-center">
-        <strong class="font-semibold text-white " >${item.title}</strong>
+        <strong class="font-semibold text-green-600 " >${item.title}</strong>
         </div>
         <div class="flex items-center gap-2">
         <label>
         <input id="complate" class="hidden" type="checkbox" >
         <div onclick="handleChekcClick(${item.id})"  id="complate"  class="w-[20px] relative flex items-center justify-center h-[20px] rounded-full border-[1px]  border-slate-500">
-        <div id="complate" class="${item.isComplated ? "bg-red-500" : ""} absolute inset=[1.2px] rounded-full "></div>
+        <div id="complate" class="${item.isComplated ? "bg-red-900" : ""} absolute inset-[2px] mx-auto rounded-full "></div>
         </div>
         </label>
         <strong class="font-semibold text-white">${index +1}.</strong>
-        <button id="edit"  class="bg-green-600 text-white p-2 rounded-md w-[100px]" >Edit</button>
-        <button id="delete" class="bg-red-600 text-white p-2 rounded-md w-[100px]"  >Delete</button>
+        <button id="edit"  class="bg-transparent border-[2px] border-blue-500 font-semibold  hover:text-blue-500 duration-400 text-white p-2 rounded-md w-[70px] sm:w-[100px]" >Tahrirlash</button>
+        <button id="delete" class="bg-transparent border-[2px] border-red-500 font-semibold hover:text-red-500 duration-400 text-white p-2 rounded-md w-[70px] sm:w-[100px]"  >O'chirish</button>
         </div>
         </div>
          `
@@ -62,6 +63,10 @@ elForm.addEventListener("submit", function (evt) {
          })   
 
     })
+
+     //LocalStorage
+   localStorage.setItem("todos", JSON.stringify(todos));
+
   }
 
 

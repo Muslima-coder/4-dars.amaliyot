@@ -4,19 +4,14 @@
     padding: 0 20px;
 }
 body{
- background: linear-gradient(135deg, #0d0d0d, #1a1a2e, #1d2b27); 
-  background-attachment:fixed;
-}
-.form-btn {
-  background: linear-gradient(135deg, #6C2BD9, #2563EB, #1d4d4d); 
-  border:2px solid  #6C2BD9;
-  color: white;
-  cursor: pointer;
+  background-image: url(../images/bg.avif);
+  background-color: rgba(0, 0, 0, 0.6); 
+  background-blend-mode: darken; 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  
+ height: 100vh;
 }
 
-.form-btn:hover {
-  background: transparent;
-  border:2px solid #1d4d4d;
-  color:#1d4d4d;
-  transition: all 0.4s;
-}
+
