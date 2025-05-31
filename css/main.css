@@ -4,14 +4,14 @@
     padding: 0 20px;
 }
 body{
-  background-image: url(../images/bg.avif);
+  background-image: url(../images/bg.jpg);
   background-color: rgba(0, 0, 0, 0.6); 
   background-blend-mode: darken; 
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   
- height: 100vh;
+ min-height: 100vh;
 }
 
 
