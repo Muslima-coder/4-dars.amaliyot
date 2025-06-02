@@ -51,7 +51,7 @@ elForm.addEventListener("submit", function (evt) {
                     </div>
              </div>
         </div>        
-           <img class=" ${item.image.includes('null') ? "hidden" : ""} mt-[8px] ml-[50px]  mx-auto rounded-md  object-cover" src="${item.image}" alt="photo" width="200" height="200" />
+           <img class=" ${item.image.includes('null') ? "hidden" : ""} mt-[8px] ml-[50px]  mx-auto rounded-md  object-cover" src="${item.image}" alt="photo" width="200"  />
         `
          list.appendChild(elItem)
 
