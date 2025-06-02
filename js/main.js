@@ -31,7 +31,7 @@ elForm.addEventListener("submit", function (evt) {
    list.innerHTML = null
    arr.forEach((item,index) =>{
     let elItem = document.createElement("li")
-        elItem.className = `${item.isComplated ? "line-through opacity-[70%] cursor-not-allowed" : "" } duration-300 p-5  `
+        elItem.className = `${item.isComplated ? "line-through  opacity-[70%] cursor-not-allowed" : "" } duration-300 p-5  `
         elItem.innerHTML = `
         <div class="flex items-center justify-between ">
                <div class=" flex flex-col gap-3">
