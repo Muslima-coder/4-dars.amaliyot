@@ -15,7 +15,7 @@ elForm.addEventListener("submit", function (evt) {
         id: todos[todos.length -1]?.id ? todos[todos.length -1].id +1 : 1,
         title: evt.target.todo.value,
         isComplated: false,
-        image:elImg.src
+        image: elImg.src
     }
     todos.push(todo)
     evt.target.reset()
@@ -25,7 +25,7 @@ elForm.addEventListener("submit", function (evt) {
     elImg.src = null
     elImg.classList.remove("h-[200px]")
 })
-
+ 
 //Render Todos
   function renderTodos(arr, list){
    list.innerHTML = null
@@ -51,7 +51,7 @@ elForm.addEventListener("submit", function (evt) {
                     </div>
              </div>
         </div>        
-           <img class=" ${item.image.includes("null") ? "hidden" : ""} mt-[8px] ml-[50px]  mx-auto rounded-md  object-cover" src="${item.image}" alt="photo" width="200" height="200" />
+           <img class=" ${item.image.includes('null') ? "hidden" : ""} mt-[8px] ml-[50px]  mx-auto rounded-md  object-cover" src="${item.image}" alt="photo" width="200" height="200" />
         `
          list.appendChild(elItem)
 
@@ -91,8 +91,6 @@ elForm.addEventListener("submit", function (evt) {
 
   //Choose img part
   elImgInput.addEventListener("change", function (e){
-    console.log(URL.createObjectURL(e.target.files[0]))
     elImg.src = URL.createObjectURL(e.target.files[0])
-    elImg.classList = "h-[200px]"
-
+    elImg.classList.add("h-[250px]")
   })
